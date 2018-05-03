@@ -1,56 +1,21 @@
 let socket = io();
+let nameTchannel='';
 //connect
-socket.on("connect", function() {
-  console.log("connect");
+socket.on("connect", function() {console.log("connect")});
 
-  /*send to server side:
-   { to: "bara@gmail.com",text: "hii"}*/
+function makeMeSender() {
+  socket.on(document.getElementById("sender").value,function(data){
+    console.log(data);
 
-  socket.emit("createEmail", {
-    to: "bara@gmail.com",
-    text: "hii"
-  });
-});
+    document.getElementById("msgSender").innerHTML = `New Message From , ${data.sender}:-`;
+    document.getElementById("msgText").innerHTML = data.message;
 
-// socket.emit("createMessage", {
-//   message: "x",
-//   from: "jsx@gmail.com"
-// });
-
-socket.on("newMessage", function(params) {
-  console.log("newMeesage", params);
-});
-
-// On disconnect
-socket.on("disconnect", function() {
-  console.log("disconnect");
-});
-
-// get data from server
-socket.on("newEmail", function(x) {
-  console.log("newEmail", x);
-});
+    });
+}
 
 function sendToServer () {
   const sender = document.getElementById("sender").value;
   const message = document.getElementById("message").value;
   const receiver = document.getElementById("receiver").value;
-
-  socket.emit(receiver, {
-    sender: sender,
-    message: message,
-    receiver: receiver
-  });
-};
-
-
-var nameTshanel='';
-socket.on(nameTshanel, function(params) {
-  console.log("newMeesage", params);
-});
-
-function makeMeSender() {
-  nameTshanel= document.getElementById("sender").value;
-  console.log(nameTshanel);
-  
+  socket.emit('newMsg',{sender,message,receiver})
 }

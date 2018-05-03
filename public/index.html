@@ -9,14 +9,14 @@
 </head>
 
 <body>
+ 
+    <input type="text" id='sender' placeholder="Sender"> <button onclick="makeMeSender()"> login by sender name </button><br>    
+    <input type="text" id='receiver' placeholder="receiver"><br>
+    <textarea name="" id="message" cols="30" rows="10" placeholder="message"></textarea><br>   
+        <button onclick="sendToServer()">Send To Server</button>
 
-    <p>hii<br>
 
-       
-    <input type="text" id='sender' placeholder="Sender"> <button onclick="makeMeSender()">make me sender </button><br>    
-    <input type="text" id='receiver' placeholder="receiver"><br>    
-    <input type="text" id='message' placeholder="message"><br>    
-        <button onclick="sendToServer()">Send To Server
+<div><span id="msgSender"></span> <span id="msgText"></span></div>
             <script src="/socket.io/socket.io.js"></script>
             <script src="./main.js"></script>
 </body>
