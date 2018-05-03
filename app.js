@@ -18,9 +18,15 @@ io.on("connection", socket => {
     socket.broadcast.emit(data.receiver, data);
   });
 
+  socket.on('UserConnectionStatus',(data)=>{
+    console.log(data);
+    
+  })
+  
   socket.on("disconnect", () => {
     console.log("disconnect");
   });
+
 });
 
 app.use(express.static(publicPath));
@@ -31,8 +37,7 @@ sarver.listen(3000, () => {
 
 
 /*
-
- socket.on("newMsg", data => {}) //get data from emit at client side 
+socket.on("newMsg", data => {}) //get data from emit at client side 
 socket.emit('listner',{}) // to send response form me 
 socket.broadcast.emit('listner',{}) //to send response form all user except me
 io.emit('listner',{}) // to send response form all user and me
