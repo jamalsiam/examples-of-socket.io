@@ -8,8 +8,6 @@ const socketIO = require("socket.io");
 let sarver = http.createServer(app);
 let io = socketIO(sarver);
 
-let arr = ["jamal", "ahmed", "baraa"];
-
 // connection
 io.on("connection", socket => {
   console.log("connection");
@@ -33,6 +31,8 @@ sarver.listen(3000, () => {
 
 
 /*
+
+ socket.on("newMsg", data => {}) //get data from emit at client side 
 socket.emit('listner',{}) // to send response form me 
 socket.broadcast.emit('listner',{}) //to send response form all user except me
 io.emit('listner',{}) // to send response form all user and me
